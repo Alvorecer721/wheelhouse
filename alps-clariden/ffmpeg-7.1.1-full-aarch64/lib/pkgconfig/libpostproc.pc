@@ -1,0 +1,14 @@
+prefix=/iopsstor/scratch/cscs/xyixuan/dev/ffmpeg-7.1.1-full-aarch64
+exec_prefix=${prefix}
+libdir=/iopsstor/scratch/cscs/xyixuan/dev/ffmpeg-7.1.1-full-aarch64/lib
+includedir=/iopsstor/scratch/cscs/xyixuan/dev/ffmpeg-7.1.1-full-aarch64/include
+
+Name: libpostproc
+Description: FFmpeg postprocessing library
+Version: 58.3.100
+Requires: 
+Requires.private: libavutil >= 59.39.100
+Conflicts:
+Libs: -L${libdir}  -lpostproc 
+Libs.private: -lm -latomic
+Cflags: -I${includedir}
