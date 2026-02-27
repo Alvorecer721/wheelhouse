@@ -3,11 +3,16 @@
 This is my personal general wheelhouse repository for prebuilt Python wheels.
 This copy is used to store wheels for the Alps Clariden cluster.
 
+## Layout
+
+- `aarch64/torchcodec-0.8.0-cp312-cp312-linux_aarch64.whl`
+- `aarch64/ffmpeg-7.1.1-full-aarch64/`
+
 ## TorchCodec 0.8.0 (linux_aarch64, cp312)
 
 Wheel file:
 
-- `torchcodec-0.8.0-cp312-cp312-linux_aarch64.whl`
+- `aarch64/torchcodec-0.8.0-cp312-cp312-linux_aarch64.whl`
 
 Compatibility:
 
@@ -21,14 +26,14 @@ Install from local clone path:
 
 ```bash
 uv pip install --python /opt/venv/bin/python --no-deps \
-  ./torchcodec-0.8.0-cp312-cp312-linux_aarch64.whl
+  ./aarch64/torchcodec-0.8.0-cp312-cp312-linux_aarch64.whl
 ```
 
 If you are already in this folder:
 
 ```bash
 uv pip install --python /opt/venv/bin/python --no-deps \
-  torchcodec-0.8.0-cp312-cp312-linux_aarch64.whl
+  aarch64/torchcodec-0.8.0-cp312-cp312-linux_aarch64.whl
 ```
 
 `--no-deps` is intentional so your existing `torch` install is not replaced.
