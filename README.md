@@ -48,3 +48,35 @@ Expected:
 
 - `torch` prints your current environment version
 - `torchcodec` prints `0.8.0+...`
+
+## xIELU CUDA 0.1.0 (linux_aarch64, cp313)
+
+Fused CUDA xIELU activation for Apertus (forward + backward, learnable
+alpha_p/alpha_n). Source: nathanrchn/kernels @ 185b512 + contiguity fix
+(vendored in Nemo-RL `docker/xielu`). Kernel contract: bf16 only,
+`numel % 128 == 0`; the Megatron-Bridge Apertus XIELU module guards both
+and falls back to eager with a warning.
+
+Wheel file:
+
+- `aarch64/xielu-0.1.0-cp313-cp313-linux_aarch64.whl`
+
+Compatibility:
+
+- Platform: `linux_aarch64` (GH200, sm_90)
+- Python: `3.13` (`cp313`)
+- Built and tested with: `torch 2.10.0+cu129` (nemo-rl v0.6.0 image,
+  `/opt/nemo_rl_venv`); also validated against `torch 2.10.0a0+nv25.11`
+
+## Install
+
+```bash
+uv pip install --python /opt/nemo_rl_venv/bin/python --no-deps \
+  ./aarch64/xielu-0.1.0-cp313-cp313-linux_aarch64.whl
+```
+
+## Verify
+
+```bash
+/opt/nemo_rl_venv/bin/python -c "import torch; from xielu import xielu; x=torch.randn(256,device='cuda').bfloat16(); a=torch.full((1,),0.5,device='cuda',dtype=torch.bfloat16); print('xielu ok', xielu(x,a,a,0.5,-1e-6).shape)"
+```
